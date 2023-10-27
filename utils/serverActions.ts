@@ -7,9 +7,8 @@ import { redirect } from 'next/navigation'
 
 export async function createNewUser(formData: FormData) {
   let newUser
-  const isWorker = formData.get('isWorkerType')
+  const role = formData.get('role') as Role
   const occupation = formData.get('occupation') as string
-  const role = isWorker ? Role.WORKER : Role.USER
   const user = (await currentUser())!
   const match = await prisma.user.findUnique({
     where: { clerkId: user.id },

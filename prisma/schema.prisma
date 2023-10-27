@@ -12,7 +12,7 @@ datasource db {
 }
 
 enum Role {
-  USER
+  CLIENT
   WORKER
 }
 
