@@ -27,7 +27,7 @@ export default async function RootLayout({
     },
     {
       label: 'I do a job',
-      url: '/jobs/dashboard',
+      url: '/worker/dashboard',
       show: !currentUser || currentUser.role === 'WORKER',
     },
     { label: 'About', url: '/about', show: true },
