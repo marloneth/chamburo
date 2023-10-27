@@ -1,19 +1,23 @@
-'use client'
-
 import SearchBar from '@/components/molecules/SearchBar'
 import JobList from '@/components/organisms/JobList'
-import { fetcher } from '@/utils/api'
-import useSWR from 'swr'
+import { getCurrentUserData } from '@/services/user'
+import { getWorkers } from '@/services/worker'
+import { redirect } from 'next/navigation'
 
-export default function JobsPage() {
-  const { data } = useSWR('/api/worker', fetcher)
+export default async function JobsPage() {
+  let workers
+  const currentUser = await getCurrentUserData()!
+
+  if (currentUser?.role !== 'CLIENT') redirect('/')
+
+  workers = await getWorkers()
 
   return (
     <main className="my-6 px-4">
       <div className="md:px-32">
         <SearchBar size="md" />
       </div>
-      {data && <JobList workers={data.workers} />}
+      <JobList workers={workers} />
     </main>
   )
 }

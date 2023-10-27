@@ -8,6 +8,6 @@ export interface Worker extends EntityCommon {
   occupation: string
   userId: string
   user: {
-    id: string
+    clerkId: string
   }
 }
