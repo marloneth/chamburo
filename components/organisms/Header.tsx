@@ -1,21 +1,24 @@
 'use client'
 
+import { UserButton, useUser } from '@clerk/nextjs'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 
-interface Props {
-  children: React.ReactNode
+interface Link {
+  label: string
+  url: string
+  show: boolean
 }
 
-export default function Header({ children }: Props) {
+interface Props {
+  links: Link[]
+}
+
+export default function Header({ links }: Props) {
   const [showVerticalMenu, setShowVerticalMenu] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
   const toggleMenuRef = useRef<HTMLElement>(null)
-  const navLinks = [
-    { label: 'I have a job', url: '/jobs' },
-    { label: 'I do a job', url: '/jobs/register' },
-    { label: 'About', url: '/about' },
-  ]
+  const { user } = useUser()
 
   function handleIconClick() {
     setShowVerticalMenu(!showVerticalMenu)
@@ -51,31 +54,40 @@ export default function Header({ children }: Props) {
 
         {/* desktop navbar */}
         <nav className="hidden md:flex w-1/2 justify-between">
-          {navLinks.map(({ label, url }, i) => (
-            <Link key={i} href={url} onClick={handleNavLinkClick}>
-              {label}
-            </Link>
-          ))}
+          {links
+            .filter(({ show }) => show)
+            .map(({ label, url }, i) => (
+              <Link key={i} href={url} onClick={handleNavLinkClick}>
+                {label}
+              </Link>
+            ))}
         </nav>
-
-        {children}
+        {user ? (
+          <UserButton afterSignOutUrl="/" />
+        ) : (
+          <Link href="/sign-in" className="">
+            Sign In
+          </Link>
+        )}
       </div>
 
       {/* mobile navbar */}
       <nav
         ref={menuRef}
-        className="flex-col text-center pt-5 text-center absolute z-[1] bg-vibrant-blue hidden w-full h-[calc(100%-32px)] text-white text-lg"
+        className="flex-col text-center pt-5 absolute z-[1] bg-vibrant-blue hidden w-full h-[calc(100%-32px)] text-white text-lg"
       >
-        {navLinks.map(({ label, url }, i) => (
-          <Link
-            key={i}
-            href={url}
-            onClick={handleNavLinkClick}
-            className="mt-5"
-          >
-            {label}
-          </Link>
-        ))}
+        {links
+          .filter(({ show }) => show)
+          .map(({ label, url }, i) => (
+            <Link
+              key={i}
+              href={url}
+              onClick={handleNavLinkClick}
+              className="mt-5"
+            >
+              {label}
+            </Link>
+          ))}
       </nav>
     </header>
   )
