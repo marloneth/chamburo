@@ -1,8 +1,21 @@
 import { prisma } from '@/utils/db'
 import { clerkClient } from '@clerk/nextjs'
-import { Worker } from '@/types/worker'
+import { GetManyWorkersParams, Worker } from '@/types/worker'
 
-export async function getWorkers(): Promise<Worker[]> {
+export async function getWorkers({
+  filters,
+}: GetManyWorkersParams = {}): Promise<Worker[]> {
+  let whereClause
+  const search = filters?.search
+
+  if (search) {
+    whereClause = {
+      occupation: {
+        contains: search,
+      },
+    }
+  }
+
   const dbWorkers = await prisma.worker.findMany({
     include: {
       user: {
@@ -11,6 +24,7 @@ export async function getWorkers(): Promise<Worker[]> {
         },
       },
     },
+    where: whereClause,
   })
 
   const clerkWorkers = await clerkClient.users.getUserList({
