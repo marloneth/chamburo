@@ -8,6 +8,14 @@ export interface Worker extends EntityCommon {
   occupation: string
   userId: string
   user: {
-    id: string
+    clerkId: string
   }
+}
+
+interface WorkerFilters {
+  search?: string | null
+}
+
+export interface GetManyWorkersParams {
+  filters?: WorkerFilters
 }
