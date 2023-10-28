@@ -11,3 +11,11 @@ export interface Worker extends EntityCommon {
     clerkId: string
   }
 }
+
+interface WorkerFilters {
+  search?: string | null
+}
+
+export interface GetManyWorkersParams {
+  filters?: WorkerFilters
+}
