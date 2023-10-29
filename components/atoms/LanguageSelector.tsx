@@ -6,11 +6,6 @@ import { Locale } from '@/i18n.config'
 import { usePathname } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 
-interface Language {
-  key: string
-  name: string
-}
-
 interface Props {
   showSelectedLangName?: boolean
 }

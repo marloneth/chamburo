@@ -8,7 +8,7 @@ interface Props {
 export default function JobList({ workers }: Props) {
   const jobsCount = workers.length
   const showingLabel = jobsCount
-    ? `Showing ${workers.length} job${jobsCount > 1 ? 's' : ''}`
+    ? `Showing ${jobsCount} job${jobsCount > 1 ? 's' : ''}`
     : 'No jobs found'
 
   return (

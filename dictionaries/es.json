@@ -9,5 +9,23 @@
     "home": {
       "searchHeading": "Encuentra gente chambeadora"
     }
+  },
+  "component": {
+    "searchBar": {
+      "placeholder": "¿Qué estás buscando?"
+    },
+    "footer": {
+      "legal": "© Chamburo 2023. Todos los derechos reservados",
+      "countryIcons": "Iconos de países creados por"
+    },
+    "jobList": {
+      "showingJobs": "Mostrando {count} expertos",
+      "noJobs": "No se encontraron expertos"
+    },
+    "newUserForm": {
+      "clientOption": "Necesito la ayuda de un experto (Cliente)",
+      "workerOption": "Estoy ofreciendo mis servicios (Trabajador)",
+      "occupationInput": "¿A qué te dedicas?"
+    }
   }
 }

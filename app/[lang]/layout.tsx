@@ -50,7 +50,7 @@ export default async function RootLayout({ children, params }: Props) {
           />
         </head>
         <body className={`${inter.className} h-screen`}>
-          <Header links={navLinks} lang={params.lang} />
+          <Header links={navLinks} />
           <div className="h-[calc(100%-180px)] overflow-auto">{children}</div>
           <Footer />
         </body>

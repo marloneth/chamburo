@@ -9,5 +9,23 @@
     "home": {
       "searchHeading": "Find people that can help you"
     }
+  },
+  "component": {
+    "searchBar": {
+      "placeholder": "What are you looking for?"
+    },
+    "footer": {
+      "legal": "© 2023 Chamburo. All Rights Reserved",
+      "countryIcons": "Country icons created by"
+    },
+    "jobList": {
+      "showingJobs": "Showing {count} experts",
+      "noJobs": "No experts found"
+    },
+    "newUserForm": {
+      "clientOption": "I need an expert's help (Client)",
+      "workerOption": "I'm offering my services (Worker)",
+      "occupationInput": "What is your occupation?"
+    }
   }
 }
