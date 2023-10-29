@@ -5,6 +5,13 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { ClerkProvider } from '@clerk/nextjs'
 import { getCurrentUserData } from '@/services/user'
+import { Locale, i18n } from '@/i18n.config'
+import React from 'react'
+
+interface Props {
+  children: React.ReactNode
+  params: { lang: Locale }
+}
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -13,11 +20,11 @@ export const metadata: Metadata = {
   description: 'A platform to connect jobs',
 }
 
-export default async function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export async function generateStaticParams() {
+  return i18n.locales.map((locale) => ({ lang: locale }))
+}
+
+export default async function RootLayout({ children, params }: Props) {
   const currentUser = await getCurrentUserData()
   const navLinks = [
     {
@@ -35,7 +42,7 @@ export default async function RootLayout({
 
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang={params.lang}>
         <head>
           <link
             rel="stylesheet"
@@ -43,8 +50,8 @@ export default async function RootLayout({
           />
         </head>
         <body className={`${inter.className} h-screen`}>
-          <Header links={navLinks} />
-          <div className="h-[calc(100%-120px)] overflow-auto">{children}</div>
+          <Header links={navLinks} lang={params.lang} />
+          <div className="h-[calc(100%-180px)] overflow-auto">{children}</div>
           <Footer />
         </body>
       </html>

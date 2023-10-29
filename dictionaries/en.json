@@ -1,0 +1,13 @@
+{
+  "navigation": {
+    "jobs": "I have a job",
+    "workerDashboard": "I do a job",
+    "about": "About",
+    "signIn": "Sign In"
+  },
+  "page": {
+    "home": {
+      "searchHeading": "Find people that can help you"
+    }
+  }
+}

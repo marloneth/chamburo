@@ -3,6 +3,7 @@
 import { UserButton, useUser } from '@clerk/nextjs'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
+import LanguageSelector from '../atoms/LanguageSelector'
 
 interface Link {
   label: string
@@ -41,7 +42,7 @@ export default function Header({ links }: Props) {
 
   return (
     <header>
-      <div className="flex justify-between bg-vibrant-blue text-[#F4F4F4] px-2 md:px-5 h-10 items-center">
+      <div className="flex justify-between bg-vibrant-blue text-[#F4F4F4] px-2 md:px-5 h-12 items-center">
         <i
           ref={toggleMenuRef}
           className="ti ti-menu-2 text-2xl md:hidden cursor-pointer"
@@ -53,22 +54,34 @@ export default function Header({ links }: Props) {
         </Link>
 
         {/* desktop navbar */}
-        <nav className="hidden md:flex w-1/2 justify-between">
+        <nav className="hidden md:flex w-1/2">
           {links
             .filter(({ show }) => show)
             .map(({ label, url }, i) => (
-              <Link key={i} href={url} onClick={handleNavLinkClick}>
+              <Link
+                key={i}
+                href={url}
+                onClick={handleNavLinkClick}
+                className="ml-8"
+              >
                 {label}
               </Link>
             ))}
         </nav>
-        {user ? (
-          <UserButton afterSignOutUrl="/" />
-        ) : (
-          <Link href="/sign-in" className="">
-            Sign In
-          </Link>
-        )}
+
+        <div className="flex justify-between items-center">
+          <div className="hidden mr-2 md:inline-block">
+            <LanguageSelector />
+          </div>
+
+          {user ? (
+            <UserButton afterSignOutUrl="/" />
+          ) : (
+            <Link href="/sign-in" className="">
+              Sign In
+            </Link>
+          )}
+        </div>
       </div>
 
       {/* mobile navbar */}
@@ -76,6 +89,9 @@ export default function Header({ links }: Props) {
         ref={menuRef}
         className="flex-col text-center pt-5 absolute z-[1] bg-vibrant-blue hidden w-full h-[calc(100%-32px)] text-white text-lg"
       >
+        <div className="w-full flex justify-center">
+          <LanguageSelector showSelectedLangName />
+        </div>
         {links
           .filter(({ show }) => show)
           .map(({ label, url }, i) => (

@@ -1,0 +1,13 @@
+{
+  "navigation": {
+    "jobs": "Ocupo un paro",
+    "workerDashboard": "Se chambear",
+    "about": "Acerca de",
+    "signIn": "Ingresar"
+  },
+  "page": {
+    "home": {
+      "searchHeading": "Encuentra gente chambeadora"
+    }
+  }
+}
