@@ -1,9 +1,16 @@
-export default function Footer() {
+import { getDictionary } from '@/lib/dictionary'
+import { serverDetectLanguage } from '@/utils/i18n'
+
+export default async function Footer() {
+  const lang = serverDetectLanguage()
+  const { component } = await getDictionary(lang)
+  const langStrings = component.footer
+
   return (
     <footer className="h-20 flex flex-col items-center border-t-2 p-2">
-      <span>© 2023 Chamburo. All Rights Reserved</span>
+      <span>{langStrings.legal}</span>
       <div className="my-2 flex text-center flex-col md:flex-row">
-        <span>Country icons created by &nbsp;</span>
+        <span>{langStrings.countryIcons} &nbsp;</span>
         <a
           href="https://www.flaticon.com/packs/gloss-circle-world-flags"
           title="country icons"

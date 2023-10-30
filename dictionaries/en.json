@@ -19,10 +19,11 @@
       "countryIcons": "Country icons created by"
     },
     "jobList": {
-      "showingJobs": "Showing {count} experts",
+      "showingJobs": "Showing {count} expert",
       "noJobs": "No experts found"
     },
     "newUserForm": {
+      "letUsKnow": "Let us know what do you want to do in Chamburo",
       "clientOption": "I need an expert's help (Client)",
       "workerOption": "I'm offering my services (Worker)",
       "occupationInput": "What is your occupation?"

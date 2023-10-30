@@ -19,10 +19,11 @@
       "countryIcons": "Iconos de países creados por"
     },
     "jobList": {
-      "showingJobs": "Mostrando {count} expertos",
+      "showingJobs": "Mostrando {count} experto",
       "noJobs": "No se encontraron expertos"
     },
     "newUserForm": {
+      "letUsKnow": "Dejános saber para que usarás Chamburo",
       "clientOption": "Necesito la ayuda de un experto (Cliente)",
       "workerOption": "Estoy ofreciendo mis servicios (Trabajador)",
       "occupationInput": "¿A qué te dedicas?"

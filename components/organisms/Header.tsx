@@ -4,6 +4,7 @@ import { UserButton, useUser } from '@clerk/nextjs'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import LanguageSelector from '../atoms/LanguageSelector'
+import { useLangDictionary } from '@/hooks/i18n'
 
 interface Link {
   label: string
@@ -17,6 +18,8 @@ interface Props {
 
 export default function Header({ links }: Props) {
   const [showVerticalMenu, setShowVerticalMenu] = useState(false)
+  const { langDictionary } = useLangDictionary()
+  const langStrings = langDictionary?.navigation
   const menuRef = useRef<HTMLDivElement>(null)
   const toggleMenuRef = useRef<HTMLElement>(null)
   const { user } = useUser()
@@ -77,9 +80,7 @@ export default function Header({ links }: Props) {
           {user ? (
             <UserButton afterSignOutUrl="/" />
           ) : (
-            <Link href="/sign-in" className="">
-              Sign In
-            </Link>
+            <Link href="/sign-in">{langStrings?.signIn}</Link>
           )}
         </div>
       </div>

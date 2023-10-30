@@ -1,3 +1,5 @@
+import { getDictionary } from '@/lib/dictionary'
+import { serverDetectLanguage } from '@/utils/i18n'
 import JobCard from '../molecules/JobCard'
 import { Worker } from '@/types/worker'
 
@@ -5,11 +7,15 @@ interface Props {
   workers: Worker[]
 }
 
-export default function JobList({ workers }: Props) {
+export default async function JobList({ workers }: Props) {
+  const lang = serverDetectLanguage()
+  const { component } = await getDictionary(lang)
+  const langStrings = component.jobList
   const jobsCount = workers.length
   const showingLabel = jobsCount
-    ? `Showing ${jobsCount} job${jobsCount > 1 ? 's' : ''}`
-    : 'No jobs found'
+    ? langStrings.showingJobs.replace('{count}', jobsCount.toString()) +
+      (jobsCount > 1 ? 's' : '')
+    : langStrings.noJobs
 
   return (
     <div className="mt-4">

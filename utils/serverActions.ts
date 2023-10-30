@@ -32,7 +32,7 @@ export async function createNewUser(formData: FormData) {
       },
     })
 
-    redirect('/dashboard')
+    redirect('/worker/dashboard')
   }
 
   redirect('/jobs')

@@ -1,5 +1,5 @@
 import SearchBar from '@/components/molecules/SearchBar'
-import { getDictionary } from '../lib/dictionary'
+import { getDictionary } from '../../lib/dictionary'
 import { Locale } from '@/i18n.config'
 
 interface Props {

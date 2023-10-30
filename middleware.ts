@@ -23,12 +23,14 @@ function generateLocaleWithPathname(locale: string, pathname: string) {
 export default authMiddleware({
   publicRoutes: ['/', ...i18n.locales.map((locale) => '/' + locale)],
   afterAuth(auth, req) {
-    let returnBackUrl
+    const requestHeaders = new Headers(req.headers)
     const { origin, pathname } = req.nextUrl
     const [_, firstSegment] = pathname.split('/')
     const langSegmentExists = i18n.locales.some(
       (local) => local === firstSegment
     )
+
+    requestHeaders.set('x-pathname', pathname)
 
     if (!langSegmentExists) {
       const locale = getLocale(req)
@@ -38,15 +40,21 @@ export default authMiddleware({
     }
 
     if (!auth.userId && !auth.isPublicRoute) {
-      returnBackUrl =
+      const redirectTo = pathname.includes('sign-in')
+        ? ''
+        : '?redirectTo=' + pathname
+      const returnBackUrl =
         origin +
-        generateLocaleWithPathname(
-          firstSegment,
-          '/new-user?redirectTo=' + pathname
-        )
+        generateLocaleWithPathname(firstSegment, '/new-user' + redirectTo)
 
-      return redirectToSignIn({
-        returnBackUrl,
+      return redirectToSignIn({ returnBackUrl })
+    }
+
+    if (auth.userId || auth.isPublicRoute) {
+      return NextResponse.next({
+        request: {
+          headers: requestHeaders,
+        },
       })
     }
   },
