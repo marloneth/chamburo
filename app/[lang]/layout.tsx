@@ -27,6 +27,8 @@ export async function generateStaticParams() {
 
 export default async function RootLayout({ children, params }: Props) {
   const { lang } = params
+  if (!i18n.locales.includes(lang)) return
+
   const { navigation } = await getDictionary(lang)
   const currentUser = await getCurrentUserData()
   const navLinks = [
