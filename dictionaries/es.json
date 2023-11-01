@@ -1,0 +1,32 @@
+{
+  "navigation": {
+    "jobs": "Ocupo un paro",
+    "workerDashboard": "Se chambear",
+    "about": "Acerca de",
+    "signIn": "Ingresar"
+  },
+  "page": {
+    "home": {
+      "searchHeading": "Encuentra gente chambeadora"
+    }
+  },
+  "component": {
+    "searchBar": {
+      "placeholder": "¿Qué estás buscando?"
+    },
+    "footer": {
+      "legal": "© Chamburo 2023. Todos los derechos reservados",
+      "countryIcons": "Iconos de países creados por"
+    },
+    "jobList": {
+      "showingJobs": "Mostrando {count} experto",
+      "noJobs": "No se encontraron expertos"
+    },
+    "newUserForm": {
+      "letUsKnow": "Dejános saber para que usarás Chamburo",
+      "clientOption": "Necesito la ayuda de un experto (Cliente)",
+      "workerOption": "Estoy ofreciendo mis servicios (Trabajador)",
+      "occupationInput": "¿A qué te dedicas?"
+    }
+  }
+}

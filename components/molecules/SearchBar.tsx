@@ -1,5 +1,6 @@
 'use client'
 
+import { useLangDictionary } from '@/hooks/i18n'
 import React, { useState } from 'react'
 
 interface Props {
@@ -9,6 +10,8 @@ interface Props {
 
 export default function SearchBar({ size, value }: Props) {
   const [inputValue, setInputValue] = useState(value)
+  const { langDictionary } = useLangDictionary()
+  const langStrings = langDictionary?.component.searchBar
   const sizeClasses = {
     md: { input: 'text-md', button: 'text-xl' },
     xl: { input: 'text-md md:text-xl', button: 'text-xl md:text-3xl' },
@@ -28,12 +31,12 @@ export default function SearchBar({ size, value }: Props) {
         type="text"
         name="search"
         className={`outline-0 w-full ${sizeClasses[size].input}`}
-        placeholder="What are you looking for?"
+        placeholder={langStrings?.placeholder}
         value={inputValue}
         onInput={handleInput}
       />
       <button type="submit" className={sizeClasses[size].button}>
-        🔎
+        <i className="ti ti-search text-accent-teal" />
       </button>
     </form>
   )

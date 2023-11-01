@@ -1,38 +1,11 @@
-import Header from '@/components/organisms/Header'
-import Footer from '@/components/organisms/Footer'
-import './globals.css'
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import { ClerkProvider } from '@clerk/nextjs'
-import { getCurrentUserData } from '@/services/user'
+import React from 'react'
 
-const inter = Inter({ subsets: ['latin'] })
-
-export const metadata: Metadata = {
-  title: 'Chamburo',
-  description: 'A platform to connect jobs',
+interface Props {
+  children: React.ReactNode
 }
 
-export default async function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  const currentUser = await getCurrentUserData()
-  const navLinks = [
-    {
-      label: 'I have a job',
-      url: '/jobs',
-      show: !currentUser || currentUser.role === 'CLIENT',
-    },
-    {
-      label: 'I do a job',
-      url: '/worker/dashboard',
-      show: !currentUser || currentUser.role === 'WORKER',
-    },
-    { label: 'About', url: '/about', show: true },
-  ]
-
+export default function RootLayout({ children }: Props) {
   return (
     <ClerkProvider>
       <html lang="en">
@@ -41,12 +14,9 @@ export default async function RootLayout({
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.36.0/tabler-icons.min.css"
           />
+          <title>Chamburo</title>
         </head>
-        <body className={`${inter.className} h-screen`}>
-          <Header links={navLinks} />
-          <div className="h-[calc(100%-120px)] overflow-auto">{children}</div>
-          <Footer />
-        </body>
+        <body className="h-screen w-screen">{children}</body>
       </html>
     </ClerkProvider>
   )
