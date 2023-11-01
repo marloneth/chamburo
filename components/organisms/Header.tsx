@@ -18,7 +18,7 @@ interface Props {
 
 export default function Header({ links }: Props) {
   const [showVerticalMenu, setShowVerticalMenu] = useState(false)
-  const { langDictionary } = useLangDictionary()
+  const { langDictionary, lang } = useLangDictionary()
   const langStrings = langDictionary?.navigation
   const menuRef = useRef<HTMLDivElement>(null)
   const toggleMenuRef = useRef<HTMLElement>(null)
@@ -51,7 +51,7 @@ export default function Header({ links }: Props) {
           className="ti ti-menu-2 text-2xl md:hidden cursor-pointer"
           onClick={handleIconClick}
         />
-        <Link href="/" className="text-2xl">
+        <Link href={`/${lang}/`} className="text-2xl">
           <i className="ti ti-hammer pr-2" />
           Chamburo
         </Link>
@@ -78,7 +78,7 @@ export default function Header({ links }: Props) {
           </div>
 
           {user ? (
-            <UserButton afterSignOutUrl="/" />
+            <UserButton afterSignOutUrl={`/${lang}/`} />
           ) : (
             <Link href="/sign-in">{langStrings?.signIn}</Link>
           )}

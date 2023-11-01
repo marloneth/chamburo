@@ -32,7 +32,11 @@ export default authMiddleware({
 
     requestHeaders.set('x-pathname', pathname)
 
-    if (!langSegmentExists) {
+    if (
+      !langSegmentExists &&
+      !pathname.includes('sign-in') &&
+      !pathname.includes('sign-up')
+    ) {
       const locale = getLocale(req)
       return NextResponse.redirect(
         new URL(generateLocaleWithPathname(locale, pathname), req.url)
