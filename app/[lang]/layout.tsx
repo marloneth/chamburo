@@ -1,6 +1,5 @@
 import Header from '@/components/organisms/Header'
 import Footer from '@/components/organisms/Footer'
-import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { getCurrentUserData } from '@/services/user'

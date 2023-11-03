@@ -34,6 +34,7 @@ export default authMiddleware({
 
     if (
       !langSegmentExists &&
+      !auth.isApiRoute &&
       !pathname.includes('sign-in') &&
       !pathname.includes('sign-up')
     ) {

@@ -37,8 +37,3 @@ export async function createNewUser(formData: FormData) {
 
   redirect('/jobs')
 }
-
-export async function goToJobList(data: FormData) {
-  const search = data.get('search-jobs')
-  redirect(`/jobs?search=${search}`)
-}
