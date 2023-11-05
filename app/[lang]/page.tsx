@@ -6,7 +6,9 @@ interface Props {
   params: { lang: Locale }
 }
 
-export default async function HomePage({ params: { lang } }: Props) {
+export default async function HomePage(
+  { params: { lang } }: Props = { params: { lang: 'en' } }
+) {
   const { page } = await getDictionary(lang)
 
   return (
