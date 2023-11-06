@@ -12,16 +12,17 @@ interface Props {
 
 const LANGUAGE_SELECTOR_ID = 'language-selector'
 
+export const languages = {
+  en: { key: 'us', name: 'English (US)' },
+  es: { key: 'mx', name: 'Español (MX)' },
+}
+
 export default function LanguageSelector({ showSelectedLangName }: Props) {
   const flagSize = 30
   const [isOpen, setIsOpen] = useState(false)
   const router = useRouter()
   const currentPath = usePathname()
   const currentLocale = currentPath.split('/')[1] as Locale
-  const languages = {
-    en: { key: 'us', name: 'English (US)' },
-    es: { key: 'mx', name: 'Español (MX)' },
-  }
 
   const langOptions = Object.entries(languages)
   const selectedLanguage = languages[currentLocale]
@@ -64,6 +65,7 @@ export default function LanguageSelector({ showSelectedLangName }: Props) {
               id={LANGUAGE_SELECTOR_ID}
               aria-haspopup="true"
               aria-expanded={isOpen}
+              data-lang={currentLocale}
             >
               <Image
                 src={`/icons/${selectedLanguage.key}-flag.png`}
